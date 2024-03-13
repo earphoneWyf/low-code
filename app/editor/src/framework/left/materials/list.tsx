@@ -25,6 +25,7 @@ export const MaterialList = () => {
             <MaterialGroup groupName="基础组件" groupList={__baseMaterias__} />
             <MaterialGroup groupName="布局组件" groupList={__layoutMaterias__} />
             <MaterialGroup groupName="表单控件" groupList={__formMaterias__} />
+            <MaterialGroup groupName="测试组件" groupList={__antDesignMaterias} />
             <MaterialGroup groupName="数据展示" groupList={__datViewMaterias__} />
             <div style={{ paddingBottom: 12 }}>
                 <Card size="small">
