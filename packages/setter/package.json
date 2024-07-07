@@ -1,22 +1,21 @@
 {
-    "name": "@huos/setter",
-    "version": "1.0.0",
-    "description": "",
-    "files": [
-      "dist"
-    ],
-    "main": "./dist/index.mjs",
-    "types": "dist/index.d.mts",
-    "scripts": {
-      "start": "tsup --watch",
-      "build": "tsup"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "@huos/core": "workspace:^",
-      "@huos/icons": "workspace:^"
-    }
+  "name": "@huos/setter",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "start": "tsup --watch",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@huos/core": "workspace:^",
+    "@huos/icons": "workspace:^"
   }
-  
+}

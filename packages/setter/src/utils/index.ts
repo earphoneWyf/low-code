@@ -1,6 +1,6 @@
 export const toOptions = (values: string[]) => {
-    return values.map((value) => ({
-      value,
-      label: value,
-    }))
-  }
+  return values.map((value) => ({
+    value,
+    label: value,
+  }))
+}

@@ -1,11 +1,11 @@
 import { transform } from "sucrase";
 
 interface ESMoudleType {
-    exports: {
-        __esModule: boolean;
-        default: any;
-        [key: string]: any;
-    };
+  exports: {
+    __esModule: boolean;
+    default: any;
+    [key: string]: any;
+  };
 }
 
 /**
@@ -13,18 +13,18 @@ interface ESMoudleType {
  * @param code 需要编译的代码,
  */
 export const sucraseTransformCode = async (code: string): Promise<string> => {
-    return new Promise((resolve, reject) => {
-        try {
-            // 编译成功的代码，不需要sourceMap
-            const buildProduct = transform(code, {
-                transforms: ["typescript", "imports", "jsx"],
-            }).code;
-            resolve(buildProduct);
-        } catch (error) {
-            // 编译失败
-            reject(error);
-        }
-    });
+  return new Promise((resolve, reject) => {
+    try {
+      // 编译成功的代码，不需要sourceMap
+      const buildProduct = transform(code, {
+        transforms: ["typescript", "imports", "jsx"],
+      }).code;
+      resolve(buildProduct);
+    } catch (error) {
+      // 编译失败
+      reject(error);
+    }
+  });
 };
 
 /**
@@ -33,8 +33,8 @@ export const sucraseTransformCode = async (code: string): Promise<string> => {
  * @param code 需要编译的代码,
  */
 export const babelTransformCode = async (code: string) => {
-    // todo...
-    return code;
+  // todo...
+  return code;
 };
 
 /**
@@ -43,8 +43,8 @@ export const babelTransformCode = async (code: string) => {
  * @param code 需要编译的代码,
  */
 export const wasmTransformCode = async (code: string) => {
-    // todo...
-    return code;
+  // todo...
+  return code;
 };
 
 /**
@@ -53,26 +53,26 @@ export const wasmTransformCode = async (code: string) => {
  * @param dependencies 模块依赖
  */
 export const compileModuleResolve = (
-    code: string,
-    dependencies: Record<string, any> = {}
+  code: string,
+  dependencies: Record<string, any> = {}
 ) => {
-    // 实现module函数，用来套动态执行的函数结果
-    const module: ESMoudleType = {
-        exports: {
-            __esModule: false,
-            default: null as unknown,
-        },
-    };
+  // 实现module函数，用来套动态执行的函数结果
+  const module: ESMoudleType = {
+    exports: {
+      __esModule: false,
+      default: null as unknown,
+    },
+  };
 
-    // 实现一个require方法，用于模块执行时挂载依赖
-    const require = (packageName: string) => {
-        if (dependencies[packageName]) {
-            return dependencies[packageName];
-        }
-    };
-    // 动态执行
-    Function("require, exports, module", code)(require, module.exports, module);
-    return module;
+  // 实现一个require方法，用于模块执行时挂载依赖
+  const require = (packageName: string) => {
+    if (dependencies[packageName]) {
+      return dependencies[packageName];
+    }
+  };
+  // 动态执行
+  Function("require, exports, module", code)(require, module.exports, module);
+  return module;
 };
 
 /**
@@ -80,7 +80,7 @@ export const compileModuleResolve = (
  * @param cssLongText 注入的css文本
  */
 export const injectCssModule = (cssLongText: string) => {
-    const style = document.createElement("style");
-    style.innerHTML = cssLongText;
-    document.head.appendChild(style);
+  const style = document.createElement("style");
+  style.innerHTML = cssLongText;
+  document.head.appendChild(style);
 };

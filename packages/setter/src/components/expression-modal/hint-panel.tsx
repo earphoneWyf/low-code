@@ -10,9 +10,9 @@ const defaultCode = `/**
 */`;
 
 export const HintPanel = () => {
-    return (
-        <Flex>
-            <CodeEditor editable={false} value={defaultCode} minHeight='50px' />
-        </Flex>
-    )
+  return (
+    <Flex>
+      <CodeEditor editable={false} value={defaultCode} minHeight='50px' />
+    </Flex>
+  )
 } 

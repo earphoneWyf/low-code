@@ -1,6 +1,6 @@
 import { compileModuleResolve, sucraseTransformCode } from '../builder'
 import { connectJsRuntimeVM, InjectVMVarsType } from "./iframe";
-import { logger } from "../logger";
+import { logger } from '..';
 
 export * from "./iframe";
 export * from './scope'
