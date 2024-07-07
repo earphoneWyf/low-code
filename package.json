@@ -1,5 +1,5 @@
 {
-  "name": "low-code",
+  "name": "web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,10 +8,7 @@
     "start:main": "nx start @huos/main",
     "start:editor": "nx start @huos/editor",
     "build:editor": "nx build @huos/editor",
-    "graph": "nx graph",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx ./"
+    "graph": "nx graph"
   },
   "keywords": [],
   "author": "",
@@ -31,18 +28,23 @@
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.12",
+    "@mantine/core": "^7.7.1",
+    "@mantine/hooks": "^7.7.1",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@uiw/codemirror-extensions-langs": "^4.21.24",
     "@uiw/codemirror-theme-github": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.22",
     "@uiw/react-textarea-code-editor": "^2.1.7",
     "ahooks": "^3.7.8",
-    "antd": "^5.11.1",
+    "antd": "^5.16.1",
     "axios": "^1.6.7",
     "bright": "^0.8.4",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
+    "esbuild-plugin-svgr": "^2.1.0",
     "framer-motion": "^10.16.4",
-    "immer": "^10.0.3",
+    "immer": "^10.1.1",
     "lodash": "^4.17.21",
     "lzutf8": "^0.6.3",
     "monaco-editor": "^0.46.0",
@@ -85,8 +87,9 @@
     "overrides": {
       "@types/react": "18.2.18",
       "@types/react-dom": "18.2.7",
-      "react": "^18.2.0",
-      "react-dom": "18.2.0"
+      "react": "18.2.0",
+      "react-dom": "18.2.0",
+      "antd": "5.16.1"
     }
   }
 }
