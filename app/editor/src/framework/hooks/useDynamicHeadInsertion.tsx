@@ -6,10 +6,10 @@ import { addHttpPrefix } from '@/framework/utils'
  * @param href css地址
  */
 function createCssLink(href: string): HTMLLinkElement {
-    const cssLink = document.createElement('link');
-    cssLink.rel = 'stylesheet';
-    cssLink.href = addHttpPrefix(href);
-    return cssLink;
+  const cssLink = document.createElement('link');
+  cssLink.rel = 'stylesheet';
+  cssLink.href = addHttpPrefix(href);
+  return cssLink;
 }
 
 /**
@@ -17,10 +17,10 @@ function createCssLink(href: string): HTMLLinkElement {
  * @param src 脚本地址
  */
 function createJsScript(src: string): HTMLScriptElement {
-    const jsScript = document.createElement('script');
-    jsScript.src = addHttpPrefix(src);
-    jsScript.async = true;
-    return jsScript;
+  const jsScript = document.createElement('script');
+  jsScript.src = addHttpPrefix(src);
+  jsScript.async = true;
+  return jsScript;
 }
 
 /**
@@ -28,36 +28,36 @@ function createJsScript(src: string): HTMLScriptElement {
  */
 export const useDynamicHeadInsertion = () => {
 
-    const element = React.useMemo(() => {
-        const preloadHeads = localStorage.getItem("editor_heads")
+  const element = React.useMemo(() => {
+    const preloadHeads = localStorage.getItem("editor_heads")
 
-        if (!preloadHeads) return null
+    if (!preloadHeads) return null
 
-        try {
-            const heads: Array<{
-                tag: 'link' | 'script',
-                url: string
-            }> = JSON.parse(preloadHeads)
+    try {
+      const heads: Array<{
+        tag: 'link' | 'script',
+        url: string
+      }> = JSON.parse(preloadHeads)
 
-            const fragment = document.createDocumentFragment();
+      const fragment = document.createDocumentFragment();
 
-            heads.forEach((item) => {
-                if (item.tag === "link") {
-                    fragment.appendChild(createCssLink(item.url))
-                } else {
-                    fragment.appendChild(createJsScript(item.url))
-                }
-            })
-
-            return fragment
-
-
-        } catch (error) {
-            return null
+      heads.forEach((item) => {
+        if (item.tag === "link") {
+          fragment.appendChild(createCssLink(item.url))
+        } else {
+          fragment.appendChild(createJsScript(item.url))
         }
+      })
 
-    }, [])
+      return fragment
+      
 
-    return element
+    } catch (error) {
+      return null
+    }
 
+  }, [])
+
+  return element
+  
 }

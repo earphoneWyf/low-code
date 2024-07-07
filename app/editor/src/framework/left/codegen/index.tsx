@@ -1,7 +1,7 @@
 export const CodeGen = () => {
     return (
-        <div>
-            11
-        </div>
+      <div>
+        11
+      </div>
     )
-}
+  }
