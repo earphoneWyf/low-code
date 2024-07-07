@@ -6,7 +6,7 @@ import { css } from "@emotion/css";
 import { MaterialList } from "./materials/list";
 import { DoubleLeftOutlined, FunctionOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { HuosRemixIcon } from "@huos/icons";
-import { LocalHisotry } from "./hisotry";
+import { LocalHisotry } from "./history";
 import { Queries } from "./queries";
 
 export enum MenuTab {
