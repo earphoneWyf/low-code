@@ -3,11 +3,11 @@ import { ReactMaterialViewType } from "@huos/core";
 import { TransferProps } from "antd/lib";
 
 export const TransferView: ReactMaterialViewType<
-    TransferProps
+TransferProps
 > = ({ ...props }, ref: any) => {
-    return (
-        <div ref={ref} style={{ display: 'inline-block' }} >
-            <Transfer  {...props} />
-        </div>
-    );
+  return (
+    <div ref={ref} style={{ display: 'inline-block' }} >
+      <Transfer  {...props} />
+    </div>
+  );
 };

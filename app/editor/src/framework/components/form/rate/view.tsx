@@ -3,11 +3,11 @@ import { ReactMaterialViewType } from "@huos/core";
 import { RateProps } from "antd/lib";
 
 export const RateView: ReactMaterialViewType<
-    RateProps
+RateProps
 > = ({ ...props }, ref: any) => {
-    return (
-        <div style={{ display: 'inline-block' }} ref={ref} >
-            <Rate {...props} />
-        </div>
-    );
+  return (
+    <div style={{  display: 'inline-block' }} ref={ref} >
+      <Rate {...props} />
+    </div>
+  );
 };
