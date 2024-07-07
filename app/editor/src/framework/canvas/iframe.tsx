@@ -1,46 +1,60 @@
 import React from "react";
 import { CanvasRootId } from "@huos/core";
 import ReactFrameComponent, {
-    FrameContextConsumer,
+  FrameContextConsumer,
 } from "react-frame-component";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { css } from "@emotion/css";
+import { MantineProvider } from "@mantine/core";
 import {
-    StyleProvider,
-    createCache as createCacheByAntd,
+  StyleProvider,
+  createCache as createCacheByAntd,
 } from "@ant-design/cssinjs";
-import { ConfigProvider } from "antd";
+
+import styles from "@mantine/core/styles.css?raw";
+import stylelayer from "@mantine/core/styles.layer.css?raw";
 
 export interface IFrameProps {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const classes = {
-    iframe: css({
-        border: "none" /* 移除边框 */,
-        margin: 0 /* 移除外边距 */,
-        padding: 0 /* 移除内边距 */,
-        width: "100%" /* 设置宽度为父容器的100% */,
-        height: "100%" /* 设置高度为父容器的100% */,
-    }),
+  iframe: css({
+    border: "none" /* 移除边框 */,
+    margin: 0 /* 移除外边距 */,
+    padding: 0 /* 移除内边距 */,
+    width: "100%" /* 设置宽度为父容器的100% */,
+    height: "100%" /* 设置高度为父容器的100% */,
+  }),
 };
 
 export const IFrame: React.FC<IFrameProps> = (props) => {
-    const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
-    return (
-        <ReactFrameComponent
-            id={CanvasRootId}
-            ref={iframeRef}
-            head={
-                <>
-                    <style>
-                        <link
-                            href="https://cdn.skypack.dev/sanitize.css"
-                            rel="stylesheet"
-                        />
-                        {`
+  return (
+    <ReactFrameComponent
+      id={CanvasRootId}
+      ref={iframeRef}
+      head={
+        <>
+          <link
+            type="text/css"
+            href="https://cdn.skypack.dev/sanitize.css"
+            rel="stylesheet"
+          />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: styles,
+            }}
+          />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: stylelayer,
+            }}
+          />
+          <style>
+            {`
             .editor-component-active {
               position: relative;
             }
@@ -80,39 +94,36 @@ export const IFrame: React.FC<IFrameProps> = (props) => {
             }
             
             `}
-                    </style>
-                </>
-            }
-            className={classes.iframe}
-        >
-            <FrameContextConsumer>
-                {({ document: _document }) => {
-                    const cache = createCache({
-                        key: "iframe",
-                        container: _document?.head,
-                    });
-                    const antdCache = createCacheByAntd();
-                    return (
-                        <ConfigProvider
-                            getPopupContainer={() =>
-                                _document ? _document.body : document.body
-                            }
-                        >
-                            <StyleProvider
-                                defaultCache={false}
-                                container={_document?.body}
-                                cache={antdCache}
-                            >
-                                <CacheProvider value={cache}>
-                                    <StyleProvider cache={antdCache}>
-                                        {props.children}
-                                    </StyleProvider>
-                                </CacheProvider>
-                            </StyleProvider>
-                        </ConfigProvider>
-                    );
-                }}
-            </FrameContextConsumer>
-        </ReactFrameComponent>
-    );
+          </style>
+        </>
+      }
+      className={classes.iframe}
+    >
+      <FrameContextConsumer>
+        {({ document: _document }) => {
+          const cache = createCache({
+            key: "iframe",
+            container: _document?.head,
+          });
+
+          const antdCache = createCacheByAntd();
+          return (
+            <StyleProvider cache={antdCache} container={_document?.head}>
+              <CacheProvider value={cache}>
+                <MantineProvider
+                  withCssVariables
+                  withGlobalClasses
+                  withStaticClasses
+                  getRootElement={() => _document?.documentElement}
+                  cssVariablesSelector="#EditorApp"
+                >
+                  {props.children}
+                </MantineProvider>
+              </CacheProvider>
+            </StyleProvider>
+          );
+        }}
+      </FrameContextConsumer>
+    </ReactFrameComponent>
+  );
 };

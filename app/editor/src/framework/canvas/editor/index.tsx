@@ -1,7 +1,7 @@
 export const CanvasEditor = () => {
     return (
-        <div>
-            111
-        </div>
+      <div>
+        111
+      </div>
     )
-}
+  }
